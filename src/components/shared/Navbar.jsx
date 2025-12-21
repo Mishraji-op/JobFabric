@@ -6,7 +6,7 @@ import { Avatar, AvatarImage } from "../ui/avatar";
 import { LogOut, User2 } from "lucide-react";
 
 const Navbar = () => {
-  const user=false;
+  const user=true;
   return (
     <div className="bg-white">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
@@ -23,9 +23,9 @@ const Navbar = () => {
           </ul>
           {
             !user ?(
-           <div>
+           <div className='flex items-center gap-2'>
             <Button variant ="outline">Login</Button>
-            <Button>Signup</Button>
+            <Button className="bg-[#6A38C2] hover:bg-[#560ada]">Signup</Button>
 
             </div>
             ) :(
@@ -33,7 +33,7 @@ const Navbar = () => {
             <PopoverTrigger asChild>
               <Avatar className="cursor-pointer">
                 <AvatarImage
-                  src="https://github.com/shadcn.png"
+                  src="https://blogger.googleusercontent.com/img/a/AVvXsEiQTUpvUs-dxgelb91lkYgv_-MSVVNBSsAxttSk2g3FS6HZu9sjG4PfU0rXpi1JrHLpKyD3l1V67zG9BtPqzIT7mIal7wJOfr8_yNBUD3qKy9-WELzsH-sAx_SU0jbJQktQ6vtnzFpEai1ISfimO-2fe2-9FCi_yB0VHqLjQTL-wky1olNdUhGBYjeaDJ0a"
                   alt="@shadcn"
                 />
               </Avatar>
@@ -42,7 +42,7 @@ const Navbar = () => {
               <div className="flex gap-4 space gap-y-2">
                 <Avatar className="cursor-pointer">
                   <AvatarImage
-                    src="https://github.com/shadcn.png"
+                    src="https://blogger.googleusercontent.com/img/a/AVvXsEiQTUpvUs-dxgelb91lkYgv_-MSVVNBSsAxttSk2g3FS6HZu9sjG4PfU0rXpi1JrHLpKyD3l1V67zG9BtPqzIT7mIal7wJOfr8_yNBUD3qKy9-WELzsH-sAx_SU0jbJQktQ6vtnzFpEai1ISfimO-2fe2-9FCi_yB0VHqLjQTL-wky1olNdUhGBYjeaDJ0a"
                     alt="@shadcn"
                   />
                 </Avatar>
