@@ -15,7 +15,7 @@ const Signup = () => {
           action=""
           className="w-1/2 border border-gray-200 rounded-md p-4 my-10"
         >
-          <h1 className="font-bold text-2xl mb-5 text-center">Create Your Account 🫣</h1>
+          <h1 className="font-bold text-xl mb-5 text-center">Create Your Account 🫣</h1>
 
           <div className="my-2">
             <Label>Full Name</Label>
@@ -62,7 +62,7 @@ const Signup = () => {
        
           </div>
           <Button type="submit" className="w-full my-4 bg-[#6A38C2] hover:bg-[#4a04c2]">Sign up</Button>
-          <span>Already have an account? <Link to="/Login" className=" text-blue-700 hover:underline">Login</Link></span>
+          <span className="text-sm">Already have an account? <Link to="/Login" className=" text-blue-700 hover:underline">Login</Link></span>
          
         </form>
       </div>
