@@ -1,5 +1,11 @@
 import React from "react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
 import { Button } from "./ui/button";
 
 const category = [
@@ -22,12 +28,12 @@ const CategoryCarousel = () => {
         <CarouselContent>
           {category.map((cat, index) => (
             <CarouselItem className=" basis-full md:basis-1/2 lg:basis-1/3">
-              <Button className='w-full rounded-full' variant='outline'> {cat}</Button>
+              <Button className="w-full rounded-full" variant="outline">{cat}</Button>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious/>
-        <CarouselNext/>
+        <CarouselPrevious />
+        <CarouselNext />
       </Carousel>
     </div>
   );
