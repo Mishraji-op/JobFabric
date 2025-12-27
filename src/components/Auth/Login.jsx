@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "sonner";
 import Navbar from "../shared/Navbar";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "@/redux/authSlice";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
   const [input, setinput] = useState({
@@ -13,13 +18,36 @@ const Login = () => {
 
     role: "",
   });
+
+  const { loading } = useSelector((store) => store.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const changeEventHandler = (e) => {
     setinput({ ...input, [e.target.name]: e.target.value });
   };
 
   const SubmitHandler = async (e) => {
     e.preventDefault();
-    console.log(input);
+
+    try {
+      dispatch(setLoading(true));
+      const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      if (res.data.success) {
+        navigate("/home");
+       toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(res.data.message);
+    } finally {
+      dispatch(setLoading(false));
+    }
   };
   return (
     <div>
@@ -49,6 +77,9 @@ const Login = () => {
             <Label>Password</Label>
             <Input
               type="password"
+              value={input.password}
+              name="password"
+              onChange={changeEventHandler}
               placeholder="***********"
               className="placeholder:text-gray-400"
             />
@@ -81,12 +112,20 @@ const Login = () => {
               </div>
             </RadioGroup>
           </div>
-          <Button
-            type="submit"
-            className="w-full my-4 bg-[#6A38C2] hover:bg-[#4a04c2]"
-          >
-            Login
-          </Button>
+          {loading ? (
+            <Button className="w-full  my-4 ">
+              {" "}
+              <Loader2 className="mr-2 h-4 animate-spin" /> Please Wait{" "}
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              className="w-full my-4 bg-[#6A38C2] hover:bg-[#4a04c2]"
+            >
+              Login
+            </Button>
+          )}
+
           <span className="text-sm">
             Don't have an account?{" "}
             <Link to="/Signup" className=" text-blue-700 hover:underline">
