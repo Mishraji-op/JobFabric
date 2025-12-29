@@ -1,1 +1,1 @@
-export const USER_API_END_POINT=""
+export const USER_API_END_POINT = "";

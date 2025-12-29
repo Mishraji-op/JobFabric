@@ -5,15 +5,15 @@ import CategoryCarousel from "./CategoryCarousel";
 import LatestJobs from "./LatestJobs";
 import Footer from "./Footer";
 const Home = () => {
-  return (
-    <>
-      <Navbar />
-      <HeroSection />
-      <CategoryCarousel />
-      <LatestJobs />
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<Navbar />
+			<HeroSection />
+			<CategoryCarousel />
+			<LatestJobs />
+			<Footer />
+		</>
+	);
 };
 
 export default Home;

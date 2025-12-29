@@ -20,8 +20,8 @@ const Signup = () => {
     file: "",
   });
 
-  const{loading} =useSelector(store =>store.auth);
-  const dispatch =useDispatch();
+  const { loading } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const changeEventHandler = (e) => {
     setinput({ ...input, [e.target.name]: e.target.value });
@@ -33,39 +33,31 @@ const Signup = () => {
   const SubmitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("fullname",input.fullname);
-    formData.append("email",input.email);
-    formData.append("phonenumber",input.phonenumber);
-    formData.append("password",input.password);
-    formData.append("role",input.role);
-    if(input.file){
-      formData.append("file",input.file);
+    formData.append("fullname", input.fullname);
+    formData.append("email", input.email);
+    formData.append("phonenumber", input.phonenumber);
+    formData.append("password", input.password);
+    formData.append("role", input.role);
+    if (input.file) {
+      formData.append("file", input.file);
     }
 
-    try{
-    dispatch(setLoading(true))
-      const res = await axios.post(
-  `${USER_API_END_POINT}/register`,
-  formData,
-  {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-    withCredentials: true,
-  }
-);
-if(res.data.success){
- navigate("/login");
-  toast.success(res.data.message);
-
-}
-    }
-    catch (error){
+    try {
+      dispatch(setLoading(true));
+      const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      });
+      if (res.data.success) {
+        navigate("/login");
+        toast.success(res.data.message);
+      }
+    } catch (error) {
       console.log(error);
       toast.error(res.data.message);
-      
-    }
-    finally{
+    } finally {
       dispatch(setLoading(false));
     }
   };
@@ -165,14 +157,19 @@ if(res.data.success){
               />
             </div>
           </div>
-          {
-            loading ? <Button className='w-full  my-4 '> <Loader2 className='mr-2 h-4 animate-spin'/> Please Wait </Button> :  <Button
-            type="submit"
-            className="w-full my-4 bg-[#6A38C2] hover:bg-[#4a04c2]"
-          >
-            Sign up
-          </Button>
-          }
+          {loading ? (
+            <Button className="w-full  my-4 ">
+              {" "}
+              <Loader2 className="mr-2 h-4 animate-spin" /> Please Wait{" "}
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              className="w-full my-4 bg-[#6A38C2] hover:bg-[#4a04c2]"
+            >
+              Sign up
+            </Button>
+          )}
           <span className="text-sm">
             Already have an account?{" "}
             <Link to="/Login" className=" text-blue-700 hover:underline">
